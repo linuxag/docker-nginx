@@ -29,7 +29,7 @@ pipeline{
             steps{
                 sh '''
                 docker rm -f mynginx | exit 0
-                docker --name mynginx run -d -p 8888:80 mynginx
+                docker run --name mynginx -d -p 8888:80 mynginx
                 '''
             }
         }
