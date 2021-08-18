@@ -11,7 +11,7 @@ pipeline{
         stage("docker-build"){
             steps{
                 sh '''
-                docker build -t mynginx nginx.Dockerfile .
+                docker build -t mynginx -f nginx.Dockerfile .
                 
                 docker images | grep nginx
                 
