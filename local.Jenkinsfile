@@ -1,5 +1,5 @@
 pipeline{
-    agent { label "awsnode" }
+    agent { label "node1" }
     stages{
         /*stage("git-checkout"){
             steps{
