@@ -26,7 +26,7 @@ resource "aws_lb" "web1-alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.ap-web-01.id]
-  subnets            = ["subnet-093a2ddfcb7bc30b1", "subnet-0475d9e26dfdc9d00", "subnet-0274975b4af3513ee"]
+  subnets            = ["subnet-2f1c5263", "subnet-e7170e8f", "subnet-e3128398"]
 
   tags = {
     Environment = "web1-alb"
