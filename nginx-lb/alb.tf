@@ -10,7 +10,13 @@ resource "aws_lb_target_group" "web1-tg" {
 #target group attachment
 resource "aws_lb_target_group_attachment" "web1-tg-attach" {
   target_group_arn = aws_lb_target_group.web1-tg.arn
-  target_id        = ["aws_instance.ap-web-01.id", "aws_instance.ap-web-02.id"]
+  target_id        = aws_instance.ap-web-01.id
+  port             = 9001
+}
+
+resource "aws_lb_target_group_attachment" "web2-tg-attach" {
+  target_group_arn = aws_lb_target_group.web1-tg.arn
+  target_id        = aws_instance.ap-web-02.id
   port             = 9001
 }
 
