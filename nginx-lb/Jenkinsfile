@@ -11,7 +11,7 @@ pipeline{
         stage("terraform-setup"){
             steps{
                 sh '''
-                cp /opt/creds/key.pub .
+                cp /opt/creds/key.pub ./nginx-lb
                 cd nginx-lb
                 terraform init
                 terraform plan
