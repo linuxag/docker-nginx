@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "web1-tg" {
   name     = "web1-tg"
   port     = 9001
   protocol = "HTTP"
-  vpc_id   = "vpc-01cf98f5afb156c90"
+  vpc_id   = "vpc-ff1ded94"
   target_type = "instance"
 }
 
