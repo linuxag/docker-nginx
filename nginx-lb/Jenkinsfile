@@ -12,6 +12,7 @@ pipeline{
             steps{
                 sh '''
                 cp /opt/creds/key.pub .
+                cd nginx-lb
                 terraform init
                 terraform plan
                 terraform apply -auto-approve
