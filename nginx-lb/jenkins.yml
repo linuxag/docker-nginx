@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deploy
+spec:
+  selector:
+    matchLabels:
+      run: jenkins-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: jenkins-deploy
+    spec:
+      containers:
+      - name: jenkins-deploy
+        image: jenkins/jenkins:lts
+        volumeMounts:
+          - name: jenkins-data
+            mountPath: /var/jenkins_home
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+      volumes:
+        - name: jenkins-data
+          hostPath:
+            path: /opt/jenkins
+            type: Directory
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-svc
+  labels:
+    run: jenkins-svc
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30000
+  selector:
+    run: jenkins-deploy
+  type: NodePort

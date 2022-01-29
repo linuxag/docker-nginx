@@ -1,7 +1,7 @@
 #target group
 resource "aws_lb_target_group" "web1-tg" {
   name     = "web1-tg"
-  port     = 9001
+  port     = 80
   protocol = "HTTP"
   vpc_id   = "vpc-ff1ded94"
   target_type = "instance"
@@ -11,13 +11,13 @@ resource "aws_lb_target_group" "web1-tg" {
 resource "aws_lb_target_group_attachment" "web1-tg-attach" {
   target_group_arn = aws_lb_target_group.web1-tg.arn
   target_id        = aws_instance.ap-web-01.id
-  port             = 9001
+  port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "web2-tg-attach" {
   target_group_arn = aws_lb_target_group.web1-tg.arn
   target_id        = aws_instance.ap-web-02.id
-  port             = 9001
+  port             = 80
 }
 
 #alb
